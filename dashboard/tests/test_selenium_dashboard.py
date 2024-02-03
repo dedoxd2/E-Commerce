@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 # @pytest.mark.selenium
 
 # @pytest.mark.django_db
+@pytest.mark.selenium
 def test_dashboard_admin_login(live_server, django_fixture_setup, firefox_browser_instance):
     browser = firefox_browser_instance
     browser.get(("%s%s" % (live_server.url, "/admin/login/")))

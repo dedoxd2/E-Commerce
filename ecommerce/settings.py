@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local Apps
     'dashboard',
+    'inventory',
+    "demo",
+    # External Apps
+    'mptt',
 ]
 
 
@@ -118,7 +122,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
