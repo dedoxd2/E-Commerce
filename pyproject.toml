@@ -16,6 +16,7 @@ pytest-factoryboy = "^2.6.0"
 pytest-selenium = "^4.0.2"
 black = "^24.1.1"
 django-mptt = "^0.16.0"
+pillow = "^10.2.0"
 
 
 [build-system]
