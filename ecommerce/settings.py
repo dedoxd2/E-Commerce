@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "demo",
     # External Apps
     'mptt',
+    "django_elasticsearch_dsl",
 ]
 
 
@@ -144,3 +145,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ELASTICSEARCH_DSL = {
+    "default": {
+
+        "hosts": "http://localhost:9200"
+    }
+}
