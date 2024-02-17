@@ -29,9 +29,12 @@ class BrandSerializer (serializers.ModelSerializer):
         fields = ["name"]
 
 class AllProducts (serializers.ModelSerializer):
+    """
+    Product Serializer
+    """
     class Meta:
         model = Product
-        fields = "__all__"
+        fields = ["name"]
        # exclude = ["name"]
         read_only = True
         editale = False
@@ -43,18 +46,30 @@ class AllProducts (serializers.ModelSerializer):
 
 class ProductInventorySerializer(serializers.ModelSerializer):
 
-    brand = BrandSerializer(many=False ,read_only = True )
-    attribute = ProductAttributeValueSerializer(source = "attribute_values",many=True)
-    image= MediaSerializer(source="media_product_inventory", many=True)
+    # brand = BrandSerializer(many=False ,read_only = True )
+    # attribute = ProductAttributeValueSerializer(source = "attribute_values",many=True)
+    # image= MediaSerializer(source="media_product_inventory", many=True)
+
+    product = AllProducts(many=False , read_only=True)
     class Meta : 
         model = ProductInventory
         fields = [
-                "sku","store_price" , 
-                "is_default" ,
-                "image",
-                "product",
-                "product_type" ,
-                "brand" ,
-                 "attribute"]
+                # 'id',
+                # "sku",
+                # "store_price" , 
+                # "is_default" ,
+                # "image",
+                # "product",
+                # "product_type" ,
+                # "brand" ,
+                #  "attribute"
+            'id',
+            "sku",
+            'store_price' , 
+            "is_default",
+            "product"
+                 
+                 ]
+        
         read_only = True
         #depth = 1
