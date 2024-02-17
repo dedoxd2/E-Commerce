@@ -21,12 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-m$7h(r2t$)2qw+72$z63g+010%b37t=0@fziu8fn2ngn1oyfk$'
+#SECRET_KEY = 'django-insecure-m$7h(r2t$)2qw+72$z63g+010%b37t=0@fziu8fn2ngn1oyfk$'
 
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+
+
+#DEBUG = True
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
@@ -47,9 +49,12 @@ INSTALLED_APPS = [
     'dashboard',
     'inventory',
     "demo",
+    'drf',
     # External Apps
     'mptt',
     "django_elasticsearch_dsl",
+    'rest_framework',
+
 ]
 
 
@@ -93,12 +98,13 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         "USER": config('USER'),
-        "PASSWORD": config('PASSWORD'),
+        "PASSWORD":config('PASSWORD'),
         "HOST": "127.0.0.1",
         "PORT": "5433",
     }
@@ -147,9 +153,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-ELASTICSEARCH_DSL = {
-    "default": {
 
-        "hosts": "http://localhost:9200"
-    }
+ELASTICSEARCH_DSL = {
+    "default": {"hosts": "localhost:9200"}
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
+
 }
