@@ -51,11 +51,13 @@ INSTALLED_APPS = [
     "demo",
     'drf',
     "search",
+    'dninja', 
     # External Apps
     'mptt',
     "django_elasticsearch_dsl",
     'rest_framework',
-
+    'ninja', 
+    
 ]
 
 

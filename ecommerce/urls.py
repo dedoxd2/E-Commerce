@@ -21,5 +21,7 @@ urlpatterns = [
     path('demo/', include("demo.urls", namespace="demo")),
     #  path("drf/", include("drf.urls", namespace="drf")),
     path("", include(router.urls)),
-        path("search/<str:query>/",SearchProductInventory.as_view() ),    
+    path("search/<str:query>/",SearchProductInventory.as_view() ),    
+    path("ninja/" , include("dninja.urls"))
+
 ]
