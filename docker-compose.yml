@@ -1,6 +1,38 @@
 version: "3.8"
 
 services:
+
+  web: 
+    restart: always
+    container_name: web_ecommercev2
+
+    build: 
+        context: .
+    
+    command: python manage.py runserver 0.0.0.0:8000
+
+    volumes:
+      - .:/usr/src/app
+
+
+    ports:
+      - 8000:8000
+
+    depends_on:
+      - redis
+      - pgdb
+
+  redis:
+      container_name: redis_ecommercev2
+      restart: always
+      image: redis:alpine
+
+      ports:
+      - 6379:6379
+
+
+
+
   pgdb: 
     container_name: pgdb_ecommerce
     image: postgres
@@ -9,7 +41,7 @@ services:
       - 5433:5432
     environment:
       - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=dedoxd2
       - POSTGRES_PASSWORD=postgres
 
   esearch:
@@ -17,6 +49,14 @@ services:
     image: elasticsearch:7.14.2
     environment: 
       - discovery.type=single-node
+      - cluster.name=ecommerce-elasticsearch
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-mx4096 -Xmx1024m
+
+    # volumes:
+    #   - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    # depends_on:
+    #   - pgdb
 
     ports:
       - 9200:9200

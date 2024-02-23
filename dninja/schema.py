@@ -57,5 +57,9 @@ class InvebtorySchema(ModelSchema):
         model_fields = [
                 "id", 
                 "sku",
-                'store_price',"weight","brand" , 'product', 'attribute_values', 
+                'store_price'
+                ,"weight",
+                "brand" ,
+                  'product', 
+                  'attribute_values', 
             ]

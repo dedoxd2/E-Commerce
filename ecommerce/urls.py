@@ -4,23 +4,31 @@ from rest_framework import routers
 from drf import views
 from search.views import SearchProductInventory
 
-router = routers.DefaultRouter()
-router.register(
+# router = routers.DefaultRouter()
+# router.register(
 
-    r'api', views.AllProductsViewset, basename="allproducts"
-)
+#     r'api', views.AllProductsViewset.as_view(), basename="allproducts"
+# )
 
-router.register(
+# router.register(
 
-    r'product/(?P<slug>[^/.]+)', views.ProductInventoryViewset, basename="products"
-)
+#     r'product/(?P<slug>[^/.]+)', views.ProductInventoryViewset.as_view(), basename="products"
+# )
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('demo/', include("demo.urls", namespace="demo")),
-    #  path("drf/", include("drf.urls", namespace="drf")),
-    path("", include(router.urls)),
+    path("drf/", include("drf.urls", namespace="drf")),
+   path("apis/products/<str:slug>", views.AllProductsViewset.as_view()),
+   
+      path("apis/products/", views.AllProductsViewset.as_view()),
+
+      path("apis/products/<str:slug>", views.AllProductsViewset.as_view()),
+
+   
+   
+   # path("", include(router.urls)),
     path("search/<str:query>/",SearchProductInventory.as_view() ),    
     path("ninja/" , include("dninja.urls"))
 

@@ -3,7 +3,7 @@ from selenium import webdriver
 import pytest
 from django.contrib.auth.models import User
 from django.core.management import call_command
-
+from rest_framework.test import APIClient
 
 @pytest.fixture
 def create_admin_user(django_user_model):
